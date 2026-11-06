@@ -1,0 +1,246 @@
+/* Ridge — the 2025 layout (avatar | rule | name) over the Blue Ridge photo the
+   site has used since 2010. */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --navy: #0f2140;
+    --ice: #eef2f8;
+    --rule: #7bb3c9;
+    --muted: #b9c8dc;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--ice);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background:
+        linear-gradient(180deg, rgba(15, 33, 64, 0.55) 0%, rgba(15, 33, 64, 0.35) 40%, rgba(15, 33, 64, 0.92) 100%),
+        url('assets/ridge.jpg') center 60% / cover no-repeat fixed,
+        var(--navy);
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1.5rem 3rem;
+}
+
+/* The first screen is the 2025 page: who, then one line on what */
+.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding-top: 4rem;
+}
+
+.identity {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid rgba(238, 242, 248, 0.85);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.content {
+    border-left: 2px solid var(--rule);
+    padding-left: 2rem;
+}
+
+.name {
+    font-size: 2.75rem;
+    font-weight: 100;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.prefix { display: none; }
+
+.role {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.panel {
+    width: min(48rem, 100%);
+    padding: 1.75rem 2rem;
+    background: rgba(15, 33, 64, 0.72);
+    backdrop-filter: blur(6px);
+    border-top: 2px solid var(--rule);
+    line-height: 1.6;
+}
+
+.pitch { width: min(36rem, 100%); }
+
+.panel small,
+.btn {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.panel small {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    color: var(--rule);
+}
+
+.panel h2 {
+    font-size: 1.6rem;
+    font-weight: normal;
+    line-height: 1.25;
+}
+
+.panel p { margin-top: 0.75rem; color: var(--muted); }
+.panel a { color: var(--ice); text-decoration-color: var(--rule); text-underline-offset: 4px; }
+
+.panel .actions { margin-top: 1.25rem; }
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.75rem;
+    text-decoration: none;
+    border: 1px solid var(--rule);
+}
+
+.btn:hover { background: rgba(123, 179, 201, 0.18); }
+
+.contact-form { margin-top: 1.25rem; display: grid; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; }
+
+.contact-form label {
+    display: grid;
+    gap: 0.35rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rule);
+}
+
+.contact-form input,
+.contact-form textarea {
+    font: inherit;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--ice);
+    background: rgba(15, 33, 64, 0.6);
+    border: 1px solid rgba(123, 179, 201, 0.45);
+    padding: 0.6rem 0.75rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus { outline: 2px solid var(--rule); outline-offset: 1px; }
+.contact-form textarea { resize: vertical; }
+.contact-form .actions { margin-top: 0.25rem; }
+
+button.btn { color: var(--ice); background: none; cursor: pointer; }
+
+.gotcha { position: absolute; left: -9999px; }
+
+.services {
+    list-style: none;
+    counter-reset: service;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.services li { counter-increment: service; }
+
+.services h3 {
+    font-size: 1.1rem;
+    font-weight: normal;
+}
+
+.services h3::before {
+    content: counter(service, decimal-leading-zero);
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.75rem;
+    color: var(--rule);
+}
+
+.services p { margin-top: 0.4rem; font-size: 0.95rem; }
+
+/* Elsewhere: one outlined card per place, linking out */
+.links {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.panel .card {
+    display: block;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(123, 179, 201, 0.45);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.panel .card:hover { background: rgba(123, 179, 201, 0.12); border-color: var(--rule); }
+.card h3 { font-size: 1.1rem; font-weight: normal; }
+.card h3::after { content: '\00a0\2192'; color: var(--rule); }
+.panel .card p { margin-top: 0.3rem; font-size: 0.95rem; }
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    font-size: 0.75rem;
+}
+
+.footer small { opacity: 0.55; }
+.footer a { color: inherit; }
+.quote { display: none; }
+
+.style-toggle {
+    font: inherit;
+    color: var(--ice);
+    background: none;
+    border: none;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.style-toggle:hover { opacity: 0.9; }
+
+@media (max-width: 600px) {
+    .identity { flex-direction: column; text-align: center; gap: 1.25rem; }
+    .avatar { width: 112px; height: 112px; }
+    .content {
+        border-left: none;
+        border-top: 2px solid var(--rule);
+        padding-left: 0;
+        padding-top: 1.25rem;
+    }
+    .name { font-size: 2.1rem; }
+    .panel { padding: 1.5rem 1.25rem; }
+    body { background-attachment: scroll; }
+}

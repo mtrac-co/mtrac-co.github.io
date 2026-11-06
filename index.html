@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Michael Tracy (mtrac): software engineer, mostly. Making systems easy to change.">
+    <title>Michael Tracy · mtrac</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <!-- Like the 2010 template: one preferred style, one alternate. Firefox
+         lists both under View → Page Style; the footer toggle works anywhere. -->
+    <link rel="stylesheet" href="ridge.css" title="Ridge" id="style">
+    <link rel="alternate stylesheet" href="adventures.css" title="Adventures (2010)">
+    <script>
+        // Apply a saved 2010 choice before first paint
+        try { if (localStorage.getItem('style') === 'adventures') document.getElementById('style').href = 'adventures.css'; } catch {}
+    </script>
+</head>
+<body>
+    <main class="container">
+        <section class="hero">
+            <header class="identity">
+                <img class="avatar" src="https://gravatar.com/avatar/a3093972045f549969652e2e73e9147b6958369dc597a5a1a9ab59bf98fbeea9?s=140" srcset="https://gravatar.com/avatar/a3093972045f549969652e2e73e9147b6958369dc597a5a1a9ab59bf98fbeea9?s=280 2x" width="140" height="140" alt="Michael Tracy">
+                <div class="content">
+                    <h1 class="name"><span class="prefix">The Adventures of </span>Michael Tracy</h1>
+                    <p class="role">software engineer, mostly</p>
+                </div>
+            </header>
+
+            <!-- Placeholder copy (from the Practice concept): positioning to be decided -->
+            <div class="panel pitch">
+                <h2>Software that stays easy to change.</h2>
+                <p>I help teams untangle systems that have gotten hard to work on, and leave behind code, docs and tooling that keep them that way.</p>
+                <p class="actions"><a class="btn" href="#contact">Start a conversation</a></p>
+            </div>
+        </section>
+
+        <section class="panel" id="work">
+            <small>What I do</small>
+            <h2>Where I usually come in.</h2>
+            <ol class="services">
+                <li>
+                    <h3>Untangling systems</h3>
+                    <p>Finding what makes change expensive, and fixing it a step at a time instead of starting over.</p>
+                </li>
+                <li>
+                    <h3>Test-first design</h3>
+                    <p>Introducing TDD &amp; BDD in a way that won't break the project or the schedule.</p>
+                </li>
+                <li>
+                    <h3>Tooling &amp; pipelines</h3>
+                    <p>Building the pipeline that lets you iterate quickly and deliver safely, so shipping is routine instead of an event.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section class="panel" id="elsewhere">
+            <small>Elsewhere</small>
+            <ul class="links">
+                <li>
+                    <a class="card" href="https://mtrac.dev">
+                        <h3>Projects</h3>
+                        <p>What I'm building, at mtrac.dev.</p>
+                    </a>
+                </li>
+                <!-- Switch these on once there's something behind them
+                <li>
+                    <a class="card" href="blog/">
+                        <h3>Writing</h3>
+                        <p>Notes on building and changing software.</p>
+                    </a>
+                </li>
+                <li>
+                    <a class="card" href="work/">
+                        <h3>Client work</h3>
+                        <p>Sites and systems I've helped build.</p>
+                    </a>
+                </li>
+                -->
+            </ul>
+        </section>
+
+        <section class="panel" id="contact">
+            <small>Get in touch</small>
+            <h2>Need help with your next software project?</h2>
+            <!-- Formspree keeps the address off the page -->
+            <form class="contact-form" action="https://formspree.io/f/xkjjedwk" method="POST">
+                <div class="form-row">
+                    <label>Name
+                        <input type="text" name="name" required autocomplete="name">
+                    </label>
+                    <label>Email
+                        <input type="email" name="email" required autocomplete="email">
+                    </label>
+                </div>
+                <label>Message
+                    <textarea name="message" rows="5" required></textarea>
+                </label>
+                <!-- Honeypot: Formspree drops submissions that fill this in -->
+                <input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <p class="actions"><button class="btn" type="submit">Send</button></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span class="quote" id="quote">You're doing it wrong, but so am I</span>
+        <small>&copy; 2026 Michael Tracy · mtrac</small>
+        <button class="style-toggle" id="style-toggle" type="button" title="2010 mode">&#9731;</button>
+    </footer>
+
+    <script>
+        // Toggle the 2010 style, and remember it. Browsers disagree on switching
+        // to an alternate stylesheet from JS, so swap the preferred sheet's href
+        // instead and leave the titled links alone for Firefox's Page Style menu
+        (() => {
+            const sheet = document.getElementById('style');
+            const button = document.getElementById('style-toggle');
+            const apply = old => {
+                const href = old ? 'adventures.css' : 'ridge.css';
+                if (sheet.getAttribute('href') !== href) sheet.href = href;
+                button.textContent = old ? '2026 →' : '☃';
+                button.title = old ? 'Back to 2026' : '2010 mode';
+            };
+            let old = sheet.getAttribute('href') === 'adventures.css';
+            apply(old);
+            button.addEventListener('click', () => {
+                old = !old;
+                apply(old);
+                try { localStorage.setItem('style', old ? 'adventures' : 'ridge'); } catch {}
+            });
+        })();
+
+        // Lines from the old site's quotes.txt (only shown in the 2010 style)
+        (() => {
+            const quotes = [
+                "You're doing it wrong, but so am I",
+                'Rain-Man Solution: a piece of code that, while being very clever, is completely stupid.',
+                'Linux is like a hammer; Windows is like a toaster.',
+                "C++ is C's crazy younger sister.",
+                'I type like a ninja',
+                'They call me, "Mike"',
+                'A place to put things',
+                'Do what you have a passion for.',
+            ];
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const el = document.getElementById('quote');
+            let i = 0;
+            setInterval(() => {
+                el.style.opacity = 0;
+                setTimeout(() => { el.textContent = quotes[i = (i + 1) % quotes.length]; el.style.opacity = 1; }, 600);
+            }, 6000);
+        })();
+    </script>
+</body>
+</html>
